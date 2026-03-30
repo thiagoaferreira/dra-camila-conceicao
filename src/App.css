@@ -38,15 +38,10 @@
 
 .hero-photo-border {
   width: 100%;
-  border-radius: 28px;
-  padding: 3px;
-  background: linear-gradient(160deg, #D4A574 0%, #8B6130 30%, #2a1a05 60%, #D4A574 100%);
-  box-shadow: 0 0 40px rgba(180, 130, 40, 0.25);
 }
 
 .hero-photo-inner {
   width: 100%;
-  border-radius: 26px;
   overflow: hidden;
   position: relative;
   background: #3d2510;
@@ -59,6 +54,7 @@
   object-position: center top;
   min-height: 380px;
   max-height: 520px;
+  border-radius: 0;
 }
 
 .hero-overlay {
@@ -116,7 +112,7 @@
   position: relative;
   background: #1c1408;
   border-radius: 14px;
-  border: 1px solid rgba(180, 130, 40, 0.25);
+  border: none;
   aspect-ratio: 1;
   display: flex;
   align-items: flex-end;
@@ -125,7 +121,7 @@
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   background-size: cover;
   background-position: center;
 }
@@ -141,13 +137,12 @@
 
 .link-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(180, 130, 40, 0.6);
   box-shadow: 0 6px 24px rgba(180, 130, 40, 0.18);
 }
 
 .link-card--featured {
-  border: 2px solid rgba(212, 165, 116, 0.7);
-  box-shadow: 0 0 18px rgba(180, 130, 40, 0.25);
+  border: none;
+  box-shadow: none;
 }
 
 .link-card-bg {
