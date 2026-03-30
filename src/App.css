@@ -1,0 +1,218 @@
+/* =============================================
+   DRA. CAMILA CONCEIÇÃO - Link Page
+   ============================================= */
+
+.app-wrapper {
+  min-height: 100svh;
+  width: 100%;
+  background: #0d0d0d;
+  display: flex;
+  justify-content: center;
+  /* Fundo com degrade lateral dourado sutil, igual ao design */
+  background-image:
+    linear-gradient(to right, rgba(180, 130, 40, 0.18) 0%, transparent 12%),
+    linear-gradient(to left, rgba(180, 130, 40, 0.18) 0%, transparent 12%);
+}
+
+.page-container {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100svh;
+  background: #111009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =============================================
+   HERO - Foto principal
+   ============================================= */
+
+.hero-photo-wrapper {
+  width: 100%;
+  padding: 16px 16px 0 16px;
+}
+
+.hero-photo-border {
+  width: 100%;
+  border-radius: 28px;
+  padding: 3px;
+  background: linear-gradient(160deg, #D4A574 0%, #8B6130 30%, #2a1a05 60%, #D4A574 100%);
+  box-shadow: 0 0 40px rgba(180, 130, 40, 0.25);
+}
+
+.hero-photo-inner {
+  width: 100%;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  background: #3d2510;
+}
+
+.hero-photo {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  min-height: 380px;
+  max-height: 520px;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(10, 8, 4, 0.92) 0%, rgba(10, 8, 4, 0.7) 40%, transparent 100%);
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 16px;
+  z-index: 2;
+}
+
+.hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+}
+
+/* =============================================
+   GRID DE LINKS
+   ============================================= */
+
+.links-grid {
+  width: 100%;
+  padding: 20px 16px 0 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.link-card {
+  position: relative;
+  background: #1c1408;
+  border-radius: 14px;
+  border: 1px solid rgba(180, 130, 40, 0.25);
+  aspect-ratio: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px 8px 12px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 8, 4, 0.88) 0%, rgba(10, 8, 4, 0.45) 50%, transparent 100%);
+  border-radius: 14px;
+  z-index: 0;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(180, 130, 40, 0.6);
+  box-shadow: 0 6px 24px rgba(180, 130, 40, 0.18);
+}
+
+.link-card--featured {
+  border: 2px solid rgba(212, 165, 116, 0.7);
+  box-shadow: 0 0 18px rgba(180, 130, 40, 0.25);
+}
+
+.link-card-badge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  z-index: 3;
+  line-height: 0;
+}
+
+.link-card-label {
+  position: relative;
+  z-index: 2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1.4;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+}
+
+/* =============================================
+   FOOTER LOGO
+   ============================================= */
+
+.footer-logo {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.footer-brand-line1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(212, 165, 116, 0.9);
+  letter-spacing: 1px;
+}
+
+.footer-brand-line2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(212, 165, 116, 0.9);
+  letter-spacing: 1px;
+}
+
+/* =============================================
+   RESPONSIVO - telas maiores centralizam
+   ============================================= */
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 40px;
+  }
+}
