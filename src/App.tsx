@@ -1,41 +1,43 @@
 import './App.css'
 
+const WA = 'https://wa.me/5571997003399?text='
+
 const links = [
   {
     id: 1,
     label: 'AGENDAR\nCONSULTA',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e gostaria de agendar uma consulta com a Dra. Camila! 😊'),
     featured: true,
     img: '/agendar-consulta.png',
   },
   {
     id: 2,
     label: 'MENTORIA',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e tenho interesse em saber mais sobre a Mentoria da Dra. Camila! 🎓'),
     img: '/mentoria.png',
   },
   {
     id: 3,
     label: 'FULL FACE',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e quero saber mais sobre o procedimento Full Face da Dra. Camila! ✨'),
     img: '/full-face.png',
   },
   {
     id: 4,
     label: 'PROTOCOLO\nCCR',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e quero saber mais sobre o Protocolo CCR da Dra. Camila! 💉'),
     img: '/protocolo-ccr.png',
   },
   {
     id: 5,
     label: 'ARQUEAMENTO\nDE SOBRANCELHAS',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e quero saber mais sobre o Arqueamento de Sobrancelhas da Dra. Camila! 🌟'),
     img: '/arqueamento-de-sobrancelhas.png',
   },
   {
     id: 6,
     label: 'RINOMODELAÇÃO\nESTRUTURADA',
-    href: '#',
+    href: WA + encodeURIComponent('Olá, vim pelo link na bio e quero saber mais sobre a Rinomodelação Estruturada da Dra. Camila! 👃'),
     img: '/rinomodelacao-estruturada.png',
   },
 ]
@@ -61,6 +63,8 @@ export default function App() {
               <a
                 key={link.id}
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`link-card${link.featured ? ' link-card--featured' : ''}`}
               >
                 {link.img && (
