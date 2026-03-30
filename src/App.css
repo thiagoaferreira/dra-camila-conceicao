@@ -33,7 +33,7 @@
 
 .hero-photo-wrapper {
   width: 100%;
-  padding: 16px 16px 0 16px;
+  padding: 0;
 }
 
 .hero-photo-border {
@@ -44,7 +44,7 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  background: #3d2510;
+  background: #111009;
 }
 
 .hero-photo {
@@ -52,8 +52,7 @@
   display: block;
   object-fit: cover;
   object-position: center top;
-  min-height: 380px;
-  max-height: 520px;
+  height: 70svh;
   border-radius: 0;
 }
 
@@ -102,7 +101,7 @@
 
 .links-grid {
   width: 100%;
-  padding: 20px 16px 0 16px;
+  padding: 12px 16px 0 16px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
