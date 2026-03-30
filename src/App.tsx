@@ -6,31 +6,37 @@ const links = [
     label: 'AGENDAR\nCONSULTA',
     href: '#',
     featured: true,
+    img: '/agendar-consulta.png',
   },
   {
     id: 2,
     label: 'MENTORIA',
     href: '#',
+    img: '/mentoria.png',
   },
   {
     id: 3,
     label: 'FULL FACE',
     href: '#',
+    img: '/full-face.png',
   },
   {
     id: 4,
     label: 'PROTOCOLO\nCCR',
     href: '#',
+    img: '/protocolo-ccr.png',
   },
   {
     id: 5,
     label: 'ARQUEAMENTO\nDE SOBRANCELHAS',
     href: '#',
+    img: '/arqueamento-de-sobrancelhas.png',
   },
   {
     id: 6,
     label: 'RINOMODELAÇÃO\nESTRUTURADA',
     href: '#',
+    img: '/rinomodelacao-estruturada.png',
   },
 ]
 
@@ -65,12 +71,12 @@ export default function App() {
               href={link.href}
               className={`link-card${link.featured ? ' link-card--featured' : ''}`}
             >
+              {link.img && (
+                <img src={link.img} alt={link.label} className="link-card-bg" />
+              )}
               {link.featured && (
                 <span className="link-card-badge">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="14" cy="14" r="13" fill="#C9922A" stroke="#F5D98B" strokeWidth="1.5"/>
-                    <text x="14" y="18.5" textAnchor="middle" fontSize="12" fontWeight="bold" fill="#fff" fontFamily="Montserrat, sans-serif">1</text>
-                  </svg>
+                  <img src="/icone-1.png" alt="#1" className="link-card-badge-img" />
                 </span>
               )}
               <span className="link-card-label">
@@ -84,15 +90,7 @@ export default function App() {
 
         {/* Logo footer */}
         <div className="footer-logo">
-          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="26" cy="26" r="24" stroke="#C9922A" strokeWidth="1.5"/>
-            <path d="M26 14 C26 14 15 22 15 30 C15 38 20 43 26 43 C32 43 37 38 37 30 C37 22 26 14 26 14Z" fill="none" stroke="#C9922A" strokeWidth="1.5"/>
-            <path d="M19 30 C19 30 22 35 26 30 C30 25 33 30 33 30" stroke="#C9922A" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-          <div className="footer-logo-text">
-            <span className="footer-brand-line1">Dra. Camila</span>
-            <span className="footer-brand-line2">Conceição</span>
-          </div>
+          <img src="/logo-dra-camila.png" alt="Dra. Camila Conceição" className="footer-logo-img" />
         </div>
 
       </div>
