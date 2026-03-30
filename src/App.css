@@ -83,7 +83,7 @@
   padding: 8px 6px 10px 6px;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.2s ease;
 }
 
@@ -103,6 +103,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+  border-radius: 12px;
+  overflow: hidden;
   z-index: 0;
 }
 
