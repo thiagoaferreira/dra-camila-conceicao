@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 /* =============================================
    DRA. CAMILA CONCEIÇÃO - Link Page
    ============================================= */
@@ -5,143 +7,104 @@
 .app-wrapper {
   min-height: 100svh;
   width: 100%;
-  background: #0d0d0d;
+  background: #000;
   display: flex;
   justify-content: center;
-  /* Fundo com degrade lateral dourado sutil, igual ao design */
-  background-image:
-    linear-gradient(to right, rgba(180, 130, 40, 0.18) 0%, transparent 12%),
-    linear-gradient(to left, rgba(180, 130, 40, 0.18) 0%, transparent 12%);
 }
 
 .page-container {
   width: 100%;
   max-width: 430px;
   min-height: 100svh;
-  background: #111009;
+  background: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 40px;
-  position: relative;
-  overflow: hidden;
+  padding-bottom: 48px;
 }
 
 /* =============================================
-   HERO - Foto principal
+   HERO — imagem de fundo + cards sobrepostos
    ============================================= */
 
-.hero-photo-wrapper {
-  width: 100%;
-  padding: 0;
-}
-
-.hero-photo-border {
-  width: 100%;
-}
-
-.hero-photo-inner {
-  width: 100%;
-  overflow: hidden;
+.hero-section {
   position: relative;
-  background: #111009;
+  width: 100%;
 }
 
-.hero-photo {
+.hero-bg {
   width: 100%;
   display: block;
   object-fit: cover;
   object-position: center top;
-  height: 70svh;
-  border-radius: 0;
 }
 
-.hero-overlay {
+/* Gradiente forte na base: funde a imagem com o preto */
+.hero-fade {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 55%;
-  background: linear-gradient(to top, rgba(10, 8, 4, 0.92) 0%, rgba(10, 8, 4, 0.7) 40%, transparent 100%);
-}
-
-.hero-text {
-  position: absolute;
-  bottom: 28px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: 0 16px;
-  z-index: 2;
-}
-
-.hero-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 2.5px;
-  color: rgba(255, 255, 255, 0.85);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.15;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+  background: linear-gradient(to top,
+    #000 0%,
+    #000 15%,
+    rgba(0,0,0,0.85) 40%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 /* =============================================
-   GRID DE LINKS
+   GRID DE CARDS — sobreposto no hero
    ============================================= */
 
 .links-grid {
-  width: 100%;
-  padding: 12px 16px 0 16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 14px 16px 14px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 8px;
+  z-index: 2;
 }
 
 .link-card {
   position: relative;
-  background: #1c1408;
-  border-radius: 14px;
+  background: #111;
+  border-radius: 12px;
   border: none;
   aspect-ratio: 1;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 10px 8px 12px 8px;
+  padding: 8px 6px 10px 6px;
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background-size: cover;
-  background-position: center;
+  transition: transform 0.2s ease;
 }
 
 .link-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(10, 8, 4, 0.88) 0%, rgba(10, 8, 4, 0.45) 50%, transparent 100%);
-  border-radius: 14px;
-  z-index: 0;
+  background: linear-gradient(to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.4) 50%,
+    transparent 100%
+  );
+  z-index: 1;
 }
 
 .link-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(180, 130, 40, 0.18);
 }
 
 .link-card--featured {
   border: none;
-  box-shadow: none;
 }
 
 .link-card-bg {
@@ -151,7 +114,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 14px;
   z-index: 0;
 }
 
@@ -164,8 +126,8 @@
 }
 
 .link-card-badge-img {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 
@@ -173,14 +135,14 @@
   position: relative;
   z-index: 2;
   font-family: 'Montserrat', sans-serif;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   color: #ffffff;
   text-align: center;
   text-transform: uppercase;
-  line-height: 1.4;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.8);
+  line-height: 1.35;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.9);
 }
 
 /* =============================================
@@ -188,32 +150,13 @@
    ============================================= */
 
 .footer-logo {
-  margin-top: 36px;
+  margin-top: 32px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
-}
-
-.footer-logo-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.2;
+  justify-content: center;
 }
 
 .footer-logo-img {
   width: 120px;
   object-fit: contain;
-  filter: brightness(1.05);
-}
-
-/* =============================================
-   RESPONSIVO - telas maiores centralizam
-   ============================================= */
-
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: 40px;
-  }
 }

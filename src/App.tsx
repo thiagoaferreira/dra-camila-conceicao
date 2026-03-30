@@ -45,42 +45,40 @@ export default function App() {
     <div className="app-wrapper">
       <div className="page-container">
 
-        {/* Foto hero com borda arredondada e dourada */}
-        <div className="hero-photo-wrapper">
-          <div className="hero-photo-border">
-            <div className="hero-photo-inner">
-              <img
-                src="/dra-camila.png"
-                alt="Dra. Camila Conceição"
-                className="hero-photo"
-              />
-            </div>
-          </div>
-        </div>
+        {/* Seção hero: imagem de fundo + cards sobrepostos */}
+        <div className="hero-section">
+          <img
+            src="/dra-camila.png"
+            alt="Dra. Camila Conceição"
+            className="hero-bg"
+          />
+          {/* Gradiente que funde a imagem com o fundo preto */}
+          <div className="hero-fade" />
 
-        {/* Grid de botões / cards */}
-        <div className="links-grid">
-          {links.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              className={`link-card${link.featured ? ' link-card--featured' : ''}`}
-            >
-              {link.img && (
-                <img src={link.img} alt={link.label} className="link-card-bg" />
-              )}
-              {link.featured && (
-                <span className="link-card-badge">
-                  <img src="/icone-1.png" alt="#1" className="link-card-badge-img" />
+          {/* Cards sobrepostos na parte inferior da imagem */}
+          <div className="links-grid">
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className={`link-card${link.featured ? ' link-card--featured' : ''}`}
+              >
+                {link.img && (
+                  <img src={link.img} alt={link.label} className="link-card-bg" />
+                )}
+                {link.featured && (
+                  <span className="link-card-badge">
+                    <img src="/icone-1.png" alt="#1" className="link-card-badge-img" />
+                  </span>
+                )}
+                <span className="link-card-label">
+                  {link.label.split('\n').map((line, i) => (
+                    <span key={i}>{line}{i < link.label.split('\n').length - 1 && <br />}</span>
+                  ))}
                 </span>
-              )}
-              <span className="link-card-label">
-                {link.label.split('\n').map((line, i) => (
-                  <span key={i}>{line}{i < link.label.split('\n').length - 1 && <br />}</span>
-                ))}
-              </span>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Logo footer */}
