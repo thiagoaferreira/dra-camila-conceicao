@@ -54,11 +54,6 @@ export default function App() {
                 alt="Dra. Camila Conceição"
                 className="hero-photo"
               />
-              <div className="hero-overlay" />
-              <div className="hero-text">
-                <p className="hero-subtitle">REALCE SUA BELEZA COM</p>
-                <h1 className="hero-title">DRA. CAMILA<br />CONCEIÇÃO</h1>
-              </div>
             </div>
           </div>
         </div>
