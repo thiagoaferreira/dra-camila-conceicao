@@ -66,6 +66,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`link-card${link.featured ? ' link-card--featured' : ''}`}
+                data-event="whatsapp_click"
               >
                 {link.img && (
                   <img src={link.img} alt={link.label} className="link-card-bg" />
