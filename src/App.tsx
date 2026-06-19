@@ -91,6 +91,11 @@ export default function App() {
           <img src="/logo-dra-camila.png" alt="Dra. Camila Conceição" className="footer-logo-img" />
         </div>
 
+        {/* Política de Privacidade */}
+        <div style={{ textAlign: 'center', padding: '14px 0 28px' }}>
+          <a href="/politica-de-privacidade.html" style={{ color: '#9b958c', fontSize: '0.82rem', textDecoration: 'underline', fontFamily: 'Montserrat, sans-serif' }}>Política de Privacidade</a>
+        </div>
+
       </div>
     </div>
   )
