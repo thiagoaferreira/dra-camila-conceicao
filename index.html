@@ -127,7 +127,7 @@
         var allParams=new URLSearchParams(window.location.search);
         document.querySelectorAll("a").forEach(function(el){
           try{
-            var elURL=new URL(el.href,window.location.origin);
+            var _raw=el.getAttribute("href")||""; if(/^(tel:|mailto:|sms:)/i.test(_raw))return; var elURL=new URL(el.href,window.location.origin);
             if(elURL.hash&&!elURL.search&&!elURL.pathname.match(/wa\.me|whatsapp/))return;
 
             var isWaLink=elURL.hostname.indexOf("wa.me")>-1||elURL.hostname.indexOf("api.whatsapp.com")>-1;
