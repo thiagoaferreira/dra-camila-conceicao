@@ -19,6 +19,7 @@ const CRM_WEBHOOK = ''
 const OBJETIVOS = [
   'Harmonização facial completa (Full Face)',
   'Rinomodelação Estruturada',
+  'Lipo de Papada',
   'Arqueamento de Sobrancelhas',
   'Protocolo CCR',
   'Ainda não sei, quero orientação da Dra. Camila',
@@ -103,13 +104,15 @@ export default function Consultas() {
           <span className="perfil-selo">Profissional da clínica</span>
         </div>
         <h1 className="perfil-nome">Dra. Camila Conceição</h1>
-        {/* TODO Thiago: trocar pela especialidade e pelo registro profissional reais. */}
-        <p className="perfil-cargo">Especialista em Harmonização Facial</p>
+        {/* TODO Thiago: falta o registro profissional (CRO ou CRM) ao lado das tres areas. */}
+        <p className="perfil-cargo">
+          Harmonização Facial · Rinomodelação · Lipo de Papada
+        </p>
         {/* TODO Thiago: trocar pelo texto que a Dra. Camila aprovar. Nao inventar numeros. */}
         <p className="perfil-bio">
-          Atendimento focado em harmonização facial com leitura individual de cada rosto: nada de
-          protocolo pronto. O plano é montado na consulta, a partir dos seus traços e do resultado
-          que você quer alcançar.
+          Atendimento em três frentes: harmonização facial, rinomodelação e lipo de papada. A
+          leitura é individual, feita a partir dos seus traços: nada de protocolo pronto. O plano
+          é montado na consulta, de acordo com o resultado que você quer alcançar.
         </p>
       </section>
 
