@@ -10,6 +10,12 @@ import {
   type Lead,
 } from './lead'
 
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[]
+  }
+}
+
 const WHATSAPP = '5571997003399'
 
 /* Webhook do CRM da Dra. Camila. O token e DESTE cliente: nunca reaproveitar em outro site.
@@ -89,6 +95,16 @@ export default function Consultas() {
       }
     }
 
+    /* O clique no botao tambem dispara quando a validacao barra o envio. Este evento so
+       sai depois que o lead foi aceito, entao e ele que vale como conversao no GTM. */
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'pre_avaliacao_enviada',
+      objetivo: lead.objetivo,
+      origem: lead.origem,
+      prazo: lead.prazo,
+    })
+
     const texto = encodeURIComponent(montarMensagemWhatsApp(lead))
     window.location.href = `https://wa.me/${WHATSAPP}?text=${texto}`
   }
@@ -119,7 +135,7 @@ export default function Consultas() {
         </p>
       </section>
 
-      <form className="form" onSubmit={enviar} noValidate>
+      <form id="form_pre_avaliacao" className="form" onSubmit={enviar} noValidate>
         <h2 className="form-titulo">Faça sua Pré-Avaliação</h2>
         <p className="form-intro">
           Preencha os dados abaixo para a equipe entender o seu caso e indicar qual protocolo
@@ -238,7 +254,12 @@ export default function Consultas() {
           </fieldset>
         ))}
 
-        <button type="submit" className="botao botao--principal" disabled={enviando}>
+        <button
+          id="enviar_pre_avaliacao"
+          type="submit"
+          className="botao botao--principal"
+          disabled={enviando}
+        >
           {enviando ? 'Enviando...' : 'Quero fazer a pré-avaliação'}
         </button>
 
