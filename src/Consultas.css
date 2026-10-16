@@ -293,13 +293,6 @@
   transform: none;
 }
 
-.botao--secundario {
-  background: transparent;
-  border-color: var(--borda);
-  color: var(--texto-suave);
-  margin-top: 12px;
-}
-
 /* ===== Rodapé ===== */
 
 .rodape {

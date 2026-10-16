@@ -262,18 +262,6 @@ export default function Consultas() {
         >
           {enviando ? 'Enviando...' : 'Quero fazer a pré-avaliação'}
         </button>
-
-        <a
-          className="botao botao--secundario"
-          href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-            'Olá, vim pelo site e gostaria de saber como funciona a pré-avaliação com a Dra. Camila.',
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          id="whatsapp_click"
-        >
-          Buscar mais informações no WhatsApp
-        </a>
       </form>
 
       <footer className="rodape">
