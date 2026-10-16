@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* =============================================
+   DRA. CAMILA CONCEIÇÃO — Pré-avaliação de consulta
+   Mesma paleta da link page: preto + dourado.
+   ============================================= */
+
+:root {
+  --ouro: #d4af37;
+  --ouro-claro: #e8c96a;
+  --preto: #000;
+  --grafite: #121212;
+  --borda: #2a2622;
+  --texto: #f2efe9;
+  --texto-suave: #9b958c;
+  --erro: #e2655a;
+}
+
+.consultas {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 18px 48px;
+  background: var(--preto);
+  color: var(--texto);
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ===== Topo ===== */
+
+.consultas-topo {
+  display: flex;
+  justify-content: center;
+  padding: 26px 0 10px;
+}
+
+.consultas-logo {
+  width: 132px;
+  object-fit: contain;
+}
+
+/* ===== Perfil ===== */
+
+.perfil {
+  text-align: center;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.perfil-foto-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.perfil-foto {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  border: 2px solid var(--ouro);
+  display: block;
+}
+
+.perfil-selo {
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--ouro);
+  color: var(--preto);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.perfil-nome {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 10px 0 4px;
+}
+
+.perfil-cargo {
+  color: var(--ouro);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.perfil-bio {
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* ===== Formulário ===== */
+
+.form {
+  padding-top: 28px;
+}
+
+.form-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-intro {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.campo {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.campo-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.campo-dupla .campo {
+  margin-bottom: 16px;
+}
+
+.campo-rotulo {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 7px;
+}
+
+.campo-rotulo em {
+  color: var(--ouro);
+  font-style: normal;
+}
+
+.campo-input {
+  width: 100%;
+  background: var(--grafite);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 13px 14px;
+  transition: border-color 0.15s ease;
+}
+
+.campo-input:focus {
+  outline: 2px solid var(--ouro);
+  outline-offset: 1px;
+  border-color: var(--ouro);
+}
+
+.campo-input--erro {
+  border-color: var(--erro);
+}
+
+.campo-erro {
+  display: block;
+  color: var(--erro);
+  font-size: 0.78rem;
+  margin-top: 6px;
+}
+
+/* ===== Grupos de escolha ===== */
+
+.grupo {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  padding: 16px 14px 8px;
+  margin: 0 0 16px;
+}
+
+.grupo-titulo {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ouro);
+  padding: 0 6px;
+}
+
+.opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* O radio nativo fica invisivel mas continua no fluxo: teclado e leitor de tela seguem
+   funcionando, e o foco e desenhado na marca redonda ao lado. */
+.opcao input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.opcao-marca {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border: 1px solid var(--texto-suave);
+  border-radius: 50%;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.opcao input:checked + .opcao-marca {
+  border-color: var(--ouro);
+}
+
+.opcao input:checked + .opcao-marca::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--ouro);
+}
+
+.opcao input:focus-visible + .opcao-marca {
+  outline: 2px solid var(--ouro);
+  outline-offset: 2px;
+}
+
+.opcao input:checked ~ .opcao-texto {
+  color: var(--texto);
+}
+
+.opcao-texto {
+  color: var(--texto-suave);
+}
+
+/* ===== Botões ===== */
+
+.botao {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 16px 18px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.botao:hover {
+  transform: translateY(-1px);
+}
+
+.botao:focus-visible {
+  outline: 2px solid var(--ouro-claro);
+  outline-offset: 2px;
+}
+
+.botao--principal {
+  background: linear-gradient(135deg, var(--ouro) 0%, var(--ouro-claro) 100%);
+  color: var(--preto);
+  margin-top: 8px;
+}
+
+.botao--principal:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+}
+
+.botao--secundario {
+  background: transparent;
+  border-color: var(--borda);
+  color: var(--texto-suave);
+  margin-top: 12px;
+}
+
+/* ===== Rodapé ===== */
+
+.rodape {
+  margin-top: 34px;
+  padding-top: 20px;
+  border-top: 1px solid var(--borda);
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+  line-height: 1.9;
+}
+
+.rodape a {
+  color: var(--texto-suave);
+  text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+  .campo-dupla {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
