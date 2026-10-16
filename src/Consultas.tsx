@@ -57,6 +57,61 @@ const GRUPOS: Grupo[] = [
   { campo: 'origem', titulo: 'Como você nos conheceu?', opcoes: ORIGENS },
 ]
 
+type CampoTextoProps = {
+  id: keyof Lead
+  rotulo: string
+  valor: string
+  erro: boolean
+  msgErro: string
+  onChange: (v: string) => void
+  tipo?: string
+  autoComplete?: string
+  placeholder?: string
+  inputMode?: 'numeric'
+}
+
+/* Todos os campos de texto se comportam igual: obrigatorios, com a mesma marcacao de erro
+   e o mesmo aria. Um componente so evita repetir isso cinco vezes. */
+function CampoTexto({
+  id,
+  rotulo,
+  valor,
+  erro,
+  msgErro,
+  onChange,
+  tipo = 'text',
+  autoComplete,
+  placeholder,
+  inputMode,
+}: CampoTextoProps) {
+  const idErro = `erro-${id}`
+  return (
+    <label className="campo" htmlFor={id}>
+      <span className="campo-rotulo">
+        {rotulo} <em>*</em>
+      </span>
+      <input
+        id={id}
+        name={id}
+        type={tipo}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        className={erro ? 'campo-input campo-input--erro' : 'campo-input'}
+        aria-invalid={erro}
+        aria-describedby={erro ? idErro : undefined}
+        value={valor}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      {erro && (
+        <span className="campo-erro" id={idErro}>
+          {msgErro}
+        </span>
+      )}
+    </label>
+  )
+}
+
 export default function Consultas() {
   const [lead, setLead] = useState<Lead>(leadVazio)
   const [erros, setErros] = useState<string[]>([])
@@ -72,7 +127,11 @@ export default function Consultas() {
     const falhas = validar(lead)
     setErros(falhas)
     if (falhas.length) {
-      document.getElementById(falhas[0])?.focus()
+      const alvo = document.getElementById(falhas[0])
+      /* O radio e invisivel e tem tamanho zero: focar nele nao rola a pagina.
+         Rolamos o bloco que o contem e so entao damos o foco. */
+      alvo?.closest('fieldset, label')?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+      alvo?.focus({ preventScroll: true })
       return
     }
 
@@ -142,117 +201,98 @@ export default function Consultas() {
           atende o seu objetivo.
         </p>
 
-        <label className="campo" htmlFor="nome">
-          <span className="campo-rotulo">
-            Nome <em>*</em>
-          </span>
-          <input
-            id="nome"
-            name="nome"
-            type="text"
-            autoComplete="name"
-            className={erro('nome') ? 'campo-input campo-input--erro' : 'campo-input'}
-            aria-invalid={erro('nome')}
-            aria-describedby={erro('nome') ? 'erro-nome' : undefined}
-            value={lead.nome}
-            onChange={(e) => set('nome', e.target.value)}
-          />
-          {erro('nome') && (
-            <span className="campo-erro" id="erro-nome">
-              Escreva o seu nome.
-            </span>
-          )}
-        </label>
+        <CampoTexto
+          id="nome"
+          rotulo="Nome"
+          autoComplete="name"
+          valor={lead.nome}
+          erro={erro('nome')}
+          msgErro="Escreva o seu nome."
+          onChange={(v) => set('nome', v)}
+        />
 
-        <label className="campo" htmlFor="whatsapp">
-          <span className="campo-rotulo">
-            WhatsApp <em>*</em>
-          </span>
-          <input
-            id="whatsapp"
-            name="whatsapp"
-            type="tel"
-            inputMode="numeric"
-            autoComplete="tel"
-            placeholder="(71) 99999-9999"
-            className={erro('whatsapp') ? 'campo-input campo-input--erro' : 'campo-input'}
-            aria-invalid={erro('whatsapp')}
-            aria-describedby={erro('whatsapp') ? 'erro-whatsapp' : undefined}
-            value={lead.whatsapp}
-            onChange={(e) => set('whatsapp', mascaraTelefone(e.target.value))}
-          />
-          {erro('whatsapp') && (
-            <span className="campo-erro" id="erro-whatsapp">
-              Informe o WhatsApp com DDD.
-            </span>
-          )}
-        </label>
+        <CampoTexto
+          id="whatsapp"
+          rotulo="WhatsApp"
+          tipo="tel"
+          inputMode="numeric"
+          autoComplete="tel"
+          placeholder="(71) 99999-9999"
+          valor={lead.whatsapp}
+          erro={erro('whatsapp')}
+          msgErro="Informe o WhatsApp com DDD."
+          onChange={(v) => set('whatsapp', mascaraTelefone(v))}
+        />
 
-        <label className="campo" htmlFor="email">
-          <span className="campo-rotulo">E-mail</span>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            className={erro('email') ? 'campo-input campo-input--erro' : 'campo-input'}
-            aria-invalid={erro('email')}
-            aria-describedby={erro('email') ? 'erro-email' : undefined}
-            value={lead.email}
-            onChange={(e) => set('email', e.target.value)}
-          />
-          {erro('email') && (
-            <span className="campo-erro" id="erro-email">
-              Confira o e-mail digitado.
-            </span>
-          )}
-        </label>
+        <CampoTexto
+          id="email"
+          rotulo="E-mail"
+          tipo="email"
+          autoComplete="email"
+          valor={lead.email}
+          erro={erro('email')}
+          msgErro="Informe um e-mail válido."
+          onChange={(v) => set('email', v)}
+        />
 
         <div className="campo-dupla">
-          <label className="campo" htmlFor="cidade">
-            <span className="campo-rotulo">Cidade</span>
-            <input
-              id="cidade"
-              name="cidade"
-              type="text"
-              autoComplete="address-level2"
-              className="campo-input"
-              value={lead.cidade}
-              onChange={(e) => set('cidade', e.target.value)}
-            />
-          </label>
+          <CampoTexto
+            id="cidade"
+            rotulo="Cidade"
+            autoComplete="address-level2"
+            valor={lead.cidade}
+            erro={erro('cidade')}
+            msgErro="Informe a sua cidade."
+            onChange={(v) => set('cidade', v)}
+          />
 
-          <label className="campo" htmlFor="profissao">
-            <span className="campo-rotulo">Profissão</span>
-            <input
-              id="profissao"
-              name="profissao"
-              type="text"
-              className="campo-input"
-              value={lead.profissao}
-              onChange={(e) => set('profissao', e.target.value)}
-            />
-          </label>
+          <CampoTexto
+            id="profissao"
+            rotulo="Profissão"
+            valor={lead.profissao}
+            erro={erro('profissao')}
+            msgErro="Informe a sua profissão."
+            onChange={(v) => set('profissao', v)}
+          />
         </div>
 
-        {GRUPOS.map((grupo) => (
-          <fieldset className="grupo" key={grupo.campo}>
-            <legend className="grupo-titulo">{grupo.titulo}</legend>
-            {grupo.opcoes.map((opcao) => (
-              <label className="opcao" key={opcao}>
-                <input
-                  type="radio"
-                  name={grupo.campo}
-                  value={opcao}
-                  checked={lead[grupo.campo] === opcao}
-                  onChange={() => set(grupo.campo, opcao)}
-                />
-                <span className="opcao-marca" aria-hidden="true" />
-                <span className="opcao-texto">{opcao}</span>
-              </label>
-            ))}
-          </fieldset>
-        ))}
+        {GRUPOS.map((grupo) => {
+          const comErro = erro(grupo.campo)
+          const idErro = `erro-${grupo.campo}`
+          return (
+            <fieldset
+              className={comErro ? 'grupo grupo--erro' : 'grupo'}
+              key={grupo.campo}
+              aria-invalid={comErro}
+              aria-describedby={comErro ? idErro : undefined}
+            >
+              <legend className="grupo-titulo">
+                {grupo.titulo} <em>*</em>
+              </legend>
+              {grupo.opcoes.map((opcao, i) => (
+                <label className="opcao" key={opcao}>
+                  <input
+                    /* o id vai no primeiro radio: e ele que recebe o foco quando o grupo
+                       e o primeiro campo em falta */
+                    id={i === 0 ? grupo.campo : undefined}
+                    type="radio"
+                    name={grupo.campo}
+                    value={opcao}
+                    checked={lead[grupo.campo] === opcao}
+                    onChange={() => set(grupo.campo, opcao)}
+                  />
+                  <span className="opcao-marca" aria-hidden="true" />
+                  <span className="opcao-texto">{opcao}</span>
+                </label>
+              ))}
+              {comErro && (
+                <span className="campo-erro" id={idErro}>
+                  Escolha uma opção.
+                </span>
+              )}
+            </fieldset>
+          )
+        })}
 
         <button
           id="enviar_pre_avaliacao"

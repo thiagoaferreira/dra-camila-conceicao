@@ -29,20 +29,54 @@ test('telefone aceita fixo e celular, recusa o resto', () => {
   assert.equal(telefoneValido(''), false)
 })
 
-test('email vazio passa porque o campo e opcional', () => {
-  assert.equal(emailValido(''), true)
+test('email agora e obrigatorio: vazio nao passa', () => {
+  assert.equal(emailValido(''), false)
   assert.equal(emailValido('camila@clinica.com.br'), true)
   assert.equal(emailValido('camila@clinica'), false)
   assert.equal(emailValido('arroba-nenhum.com'), false)
 })
 
-test('validar aponta cada campo com problema', () => {
-  assert.deepEqual(validar({ ...leadVazio, nome: 'Ana', whatsapp: '71997003399' }), [])
-  assert.deepEqual(validar(leadVazio), ['nome', 'whatsapp'])
-  assert.deepEqual(
-    validar({ ...leadVazio, nome: 'Ana', whatsapp: '71997003399', email: 'x@y' }),
-    ['email'],
-  )
+const leadCompleto = {
+  nome: 'Ana',
+  whatsapp: '71997003399',
+  email: 'ana@exemplo.com',
+  cidade: 'Salvador',
+  profissao: 'Advogada',
+  objetivo: 'Lipo de Papada',
+  faixaEtaria: '30 a 40 anos',
+  decisao: 'Decido sozinha',
+  prazo: 'Imediatamente',
+  origem: 'Instagram',
+}
+
+test('lead completo passa', () => {
+  assert.deepEqual(validar(leadCompleto), [])
+})
+
+test('todo campo e obrigatorio: o formulario vazio reclama de todos', () => {
+  assert.deepEqual(validar(leadVazio), [
+    'nome',
+    'whatsapp',
+    'email',
+    'cidade',
+    'profissao',
+    'objetivo',
+    'faixaEtaria',
+    'decisao',
+    'prazo',
+    'origem',
+  ])
+})
+
+test('cada campo faltando aparece sozinho na lista', () => {
+  for (const campo of Object.keys(leadCompleto) as (keyof typeof leadCompleto)[]) {
+    assert.deepEqual(validar({ ...leadCompleto, [campo]: '' }), [campo], `faltou ${campo}`)
+  }
+})
+
+test('os erros saem na ordem visual, para o foco cair no primeiro', () => {
+  const erros = validar({ ...leadCompleto, email: '', nome: '', prazo: '' })
+  assert.deepEqual(erros, ['nome', 'email', 'prazo'])
 })
 
 test('telefone para o wa.me sai com 55 e sem duplicar', () => {

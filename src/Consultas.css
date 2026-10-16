@@ -191,11 +191,24 @@
   margin: 0 0 16px;
 }
 
+.grupo--erro {
+  border-color: var(--erro);
+}
+
 .grupo-titulo {
   font-size: 0.86rem;
   font-weight: 700;
   color: var(--ouro);
   padding: 0 6px;
+}
+
+.grupo-titulo em {
+  color: var(--ouro);
+  font-style: normal;
+}
+
+.grupo .campo-erro {
+  padding: 0 4px 8px;
 }
 
 .opcao {

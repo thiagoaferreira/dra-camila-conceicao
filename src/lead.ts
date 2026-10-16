@@ -47,16 +47,24 @@ export function telefoneValido(valor: string): boolean {
 }
 
 export function emailValido(valor: string): boolean {
-  if (!valor) return true // campo opcional: vazio passa
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valor.trim())
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((valor || '').trim())
 }
 
-/** Retorna o nome de cada campo com problema. Vazio = pode enviar. */
+/** Os cinco grupos de escolha, na mesma ordem em que aparecem na pagina. */
+export const CAMPOS_ESCOLHA = ['objetivo', 'faixaEtaria', 'decisao', 'prazo', 'origem'] as const
+
+/** Nome de cada campo com problema, na ordem visual: o primeiro e o que recebe o foco.
+   Vazio = pode enviar. Todo campo do formulario e obrigatorio. */
 export function validar(lead: Lead): string[] {
   const erros: string[] = []
   if (lead.nome.trim().length < 2) erros.push('nome')
   if (!telefoneValido(lead.whatsapp)) erros.push('whatsapp')
   if (!emailValido(lead.email)) erros.push('email')
+  if (!lead.cidade.trim()) erros.push('cidade')
+  if (!lead.profissao.trim()) erros.push('profissao')
+  for (const campo of CAMPOS_ESCOLHA) {
+    if (!lead[campo]) erros.push(campo)
+  }
   return erros
 }
 
