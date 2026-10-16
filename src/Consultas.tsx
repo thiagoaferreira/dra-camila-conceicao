@@ -12,9 +12,12 @@ import {
 
 const WHATSAPP = '5571997003399'
 
-/* Webhook do CRM da Dra. Camila. Token e por cliente: nunca reaproveitar o de outro site.
-   Enquanto estiver vazio, o envio pula o CRM e vai direto para o WhatsApp. */
-const CRM_WEBHOOK = ''
+/* Webhook do CRM da Dra. Camila. O token e DESTE cliente: nunca reaproveitar em outro site.
+   O CRM deduplica por telefone — o mesmo numero atualiza o lead em vez de criar outro. */
+const CRM_WEBHOOK =
+  'https://pajblplxhgebssydyesb.supabase.co/functions/v1/crm-lead-webhook' +
+  '?token=1238350095d7451e920ad06b95589298586d88b7bb604262bfcefbf71ffee49f' +
+  '&crm=e8518714-76d7-408f-bd80-2d18b88c4c5a'
 
 const OBJETIVOS = [
   'Harmonização facial completa (Full Face)',
