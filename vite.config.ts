@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,5 +8,12 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      // Duas paginas: a link page (/) e a pre-avaliacao (/consultas).
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        consultas: resolve(__dirname, 'consultas.html'),
+      },
+    },
   },
 })
